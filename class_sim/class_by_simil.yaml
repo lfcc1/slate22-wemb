@@ -7,6 +7,10 @@
     - [ pizza , bom ]
     - [ descançar , bom ]
     - [ cançado , mau ]
+    - [ reclamação , mau ]
+    - [ atencioso , bom ]
+    - [ simpático , bom ]
+    - [ nojento , bom ]
 
 - tit: class-animais
   clas:
@@ -51,7 +55,7 @@
     - [ Ebro , Espanha ]
     - [ Moure, Portugal ]
     - [ Famalicão, Portugal ]
-    - [ Guartar, Portugal ]
-    - [ Clunny, França ]
+    - [ Gualtar, Portugal ]
+    - [ Cluny, França ]
     - [ Covadonga, Espanha ]
     
