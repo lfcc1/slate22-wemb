@@ -24,3 +24,23 @@
     - [ tubarão, peixe ]
     - [ sardinha, peixe ]
     - [ salmão, peixe ]
+
+- tit: geo
+  clas:
+    - Portugal
+    - Espanha
+    - França
+  testes:
+    - [ Braga, Portugal ]
+    - [ Lisboa, Portugal ]
+    - [ Santarém, Portugal ]
+    - [ Bragança, Portugal ]
+    - [ Vigo, Espanha ]
+    - [ Granada, Espanha ]
+    - [ Sevilha, Espanha ]
+    - [ Barcelona, Espanha ]
+    - [ Paris, França ]
+    - [ Tolouse, França ]
+    - [ Biarritz, França ]
+    - [ Lyon, França ]
+    - [ Nantes, França ]
