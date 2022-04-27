@@ -1,0 +1,26 @@
+- tit: polarity
+  clas:
+    - bom
+    - mau
+  testes:
+    - [ guerra, mau ]
+    - [ pizza , bom ]
+    - [ descançar , bom ]
+    - [ cançado , mau ]
+
+- tit: class-animais
+  clas:
+    - ave
+    - mamífero
+    - peixe
+  testes:
+    - [ melro , ave]
+    - [ águia , ave]
+    - [ pomba , ave]
+    - [ gato , mamífero ]
+    - [ leão , mamífero ]
+    - [ macaco , mamífero ]
+    - [ boi , mamífero ]
+    - [ tubarão, peixe ]
+    - [ sardinha, peixe ]
+    - [ salmão, peixe ]
