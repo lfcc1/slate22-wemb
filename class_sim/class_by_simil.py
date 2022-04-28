@@ -21,17 +21,20 @@ length = 0
 def getTestsLength(sections):
     count = 0
     for section in sections:
-        count += len(section["testes"])
+        if section["score"] != -1:
+            count += len(section["testes"])
     return count
 
 def createVerboseResult(sections):
     result = []
     for section in sections:
+        if section["score"] == -1:
+            continue
+
         accepted = []
         rejected = []
         for test in section["testes"]:
             try:
-                
                 accepted.append(test[0]) if test[2] == 1 else rejected.append(test[0])
             except IndexError:
                 continue
@@ -52,6 +55,7 @@ def containsUnknownWord(words):
 
 
 for section in sections:
+    section["score"] = -1
     if containsUnknownWord(section["clas"]):
             continue
     local_score = 0
@@ -76,15 +80,17 @@ for section in sections:
     length += local_length
 
 total_score = round(score/(length),4) if length != 0 else 0
+
+real_length = getTestsLength(sections)
+oov_ratio = round(len(oov)/real_length,4) if real_length != 0 else 0
+
 if '-v' in ops:
-    result = (total_score, createVerboseResult(sections))
+    result = ({"global_score":total_score,"oov_ratio":oov_ratio}, createVerboseResult(sections))
     print(result)
 
-if '-u' in ops:
-    real_length = getTestsLength(sections)
-    oov_ratio = round(len(oov)/real_length,4) if real_length != 0 else 0
+elif '-u' in ops:
     print((oov_ratio,oov))
 
 else:
-    result = (total_score, [(section["tit"],section["score"]) for section in sections])     
+    result = ({"global_score":total_score,"oov_ratio":oov_ratio}, [(section["tit"],section["score"]) for section in sections])     
     print(result)
