@@ -54,8 +54,8 @@
     - [ manchado , mau ]
     - [ maravilhoso , bom ]
     - [ minúsculo , mau ]
-    - [ morrer , mau ]
-    - [ nascer , bom ]
+    - [ morreu , mau ]
+    - [ nasceu , bom ]
     - [ ninguém , mau ]
     - [ nojento , mau ]
     - [ nunca , mau ]
@@ -88,7 +88,6 @@
     - [ situado , bom ]
     - [ terror , mau ]
     - [ vergonha , mau ]
-    - [ voltaria , bom ]
 
 - tit: class-animais
   clas:

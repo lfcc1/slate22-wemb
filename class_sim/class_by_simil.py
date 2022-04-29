@@ -69,7 +69,7 @@ for section in sections:
         found_index = sim_result.index(max(sim_result))
 
         #print(index,teste[0],elem['clas'][index])
-        if section['clas'][found_index] == test[1]:
+        if found_index == test[1] or section['clas'][found_index] == test[1]:
             local_score += 1
             test.append(1)  ## Acepted
         else:
