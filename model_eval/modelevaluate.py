@@ -16,8 +16,12 @@ if len(args) < 2 :
 
 if "-a" in ops:
     model = KeyedVectors.load(args[0])
-    res = model.wv.evaluate_word_analogies(args[1])
-    print(res[0])
+    sections = model.wv.evaluate_word_analogies(args[1])
+    res = []
+    for section in sections[1]:
+        section_score = len(section["correct"]) / (len(section["correct"]) + len(section["incorrect"]))
+        res.append({"section":section["section"], "score": section_score})
+    print(res)
     
 
 elif "-w" in ops:
