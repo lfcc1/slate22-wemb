@@ -1,5 +1,5 @@
 from gensim.models import KeyedVectors
-
+from pprint import pprint
 from getopt import getopt
 import sys
 
@@ -19,9 +19,10 @@ if "-a" in ops:
     sections = model.wv.evaluate_word_analogies(args[1])
     res = []
     for section in sections[1]:
-        section_score = len(section["correct"]) / (len(section["correct"]) + len(section["incorrect"]))
-        res.append({"section":section["section"], "score": section_score})
-    print(res)
+        total_length = len(section["correct"]) + len(section["incorrect"])
+        section_score = len(section["correct"]) / total_length
+        res.append({"section":section["section"], "score": round(section_score,4), "size": total_length})
+    pprint(res)
     
 
 elif "-w" in ops:
