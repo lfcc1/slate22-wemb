@@ -29,7 +29,6 @@ length = 0
 
 def display_scatterplot(model, sections,pca=True):
     words = [test[0]  for sec in sections for test in sec["testes"] if test[0] in model.key_to_index]
-    print(words)
     word_vectors = np.array([model[w] for w in words])
 
     if pca:
@@ -139,5 +138,5 @@ elif "-h" in ops:
         """)
 
 else:
-    result = ({"global_score":total_score,"oov_ratio":oov_ratio}, [(section["tit"],section["score"]) for section in sections])     
+    result = ({"global_score":total_score,"oov_ratio":oov_ratio}, [(section["tit"],section["score"],len(section["testes"])) for section in sections])     
     print(result)
