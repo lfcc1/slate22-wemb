@@ -83,6 +83,7 @@ def containsUnknownWord(words):
 for section in sections:
     section["score"] = -1
     if containsUnknownWord(section["clas"]):
+            clusters = {}
             continue
     local_score = 0
     local_length = 0
