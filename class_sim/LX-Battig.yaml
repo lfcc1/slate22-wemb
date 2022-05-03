@@ -1,5 +1,5 @@
 - tit: LX-Battig  
-    clas: 
+  clas: 
     - mamíferos
     - aves
     - peixe
@@ -10,7 +10,7 @@
     - roupas
     - ferramentas
     - cozinha
-    testes:
+  testes:
     - [cão, mamíferos]
     - [elefante, mamíferos]
     - [gato, mamíferos]
