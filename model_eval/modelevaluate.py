@@ -21,9 +21,9 @@ if "-a" in ops:
     for section in sections[1]:
         total_length = len(section["correct"]) + len(section["incorrect"])
         if total_length != 0:
-        	section_score = len(section["correct"]) / total_length
-        	res.append({"section":section["section"], "score": round(section_score*100,2), "size": total_length})
-    		pprint(res)
+            section_score = len(section["correct"]) / total_length
+            res.append({"section":section["section"], "score": round(section_score*100,2), "size": total_length})
+    	    pprint(res)
     
 
 elif "-w" in ops:
