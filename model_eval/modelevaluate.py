@@ -23,7 +23,7 @@ if "-a" in ops:
         if total_length != 0:
             section_score = len(section["correct"]) / total_length
             res.append({"section":section["section"], "score": round(section_score*100,2), "size": total_length})
-    	    pprint(res)
+            pprint(res)
     
 
 elif "-w" in ops:
