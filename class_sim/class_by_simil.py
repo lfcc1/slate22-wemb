@@ -15,8 +15,8 @@ ops,args = getopt(sys.argv[1:],"vuhcpt")
 ops = dict(ops)
 
 
-model = Word2Vec.load(args[0])
-model = model.wv
+model = KeyedVectors.load(args[0])
+model = model
 
 f = open(args[1], encoding="utf8")
 sections= yaml.safe_load(f)
