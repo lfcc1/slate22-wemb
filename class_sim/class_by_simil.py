@@ -1,4 +1,4 @@
-from gensim.models import KeyedVectors
+from gensim.models import KeyedVectors, Word2Vec
 import yaml
 from getopt import getopt
 import sys
@@ -9,11 +9,14 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
+import numpy as np
+
 ops,args = getopt(sys.argv[1:],"vuhcpt")
 ops = dict(ops)
 
 
-model = KeyedVectors.load(args[0])
+model = Word2Vec.load(args[0])
+model = model.wv
 
 f = open(args[1], encoding="utf8")
 sections= yaml.safe_load(f)
@@ -73,31 +76,41 @@ def isUnknownWord(word):
         return True 
     return False
 
-def containsUnknownWord(words):
-    for word in words:
-        if isUnknownWord(word):
-            return True
+def containsUnknownWord(classes):
+    for clas in classes:
+        for word in clas:
+            if isUnknownWord(word):
+                return True
     return False
+
+def my_similarity(vect1, vect2):
+    return np.dot(vect1, vect2) / (np.linalg.norm(vect1) * np.linalg.norm(vect2))
+
+def calculateClassMean(classes,model):
+    word_vectors = np.array([model[word] for word in classes])
+    return np.mean(word_vectors, axis=0)
 
 
 for section in sections:
     section["score"] = -1
-    if containsUnknownWord(section["clas"]):
+    
+    if containsUnknownWord(section["clas"]): 
         section["clusters"] = {}
         continue
+
     local_score = 0
     local_length = 0
-    clusters = {clas:[] for clas in section["clas"]}
+    clusters = {i:[] for i,clas in enumerate(section["clas"])}
     for test in section['testes']:
         if isUnknownWord(test[0]):
             continue
         
         local_length += 1
-        sim_result = [model.similarity(test[0],clas) for clas in section['clas']]
+        sim_result = [my_similarity(model[test[0]], calculateClassMean(clas,model)) for clas in section['clas']]
         found_index = sim_result.index(max(sim_result))
 
         #print(index,teste[0],elem['clas'][index])
-        clusters[section['clas'][found_index]].append(test[0])
+        clusters[found_index].append(test[0])
         if found_index == test[1] or section['clas'][found_index] == test[1]:
             local_score += 1
             test.append(1)  ## Acepted
